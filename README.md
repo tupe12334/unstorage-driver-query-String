@@ -95,45 +95,6 @@ Modern browsers with support for:
 - `URL` constructor
 - `History API` (for browser history updates)
 
-## Development
-
-```bash
-# Install dependencies
-pnpm install
-
-# Run tests
-pnpm test
-
-# Build
-pnpm build
-
-# Type check
-pnpm typecheck
-
-# Lint code
-pnpm lint
-
-# Release (using release-it)
-pnpm release
-```
-
-## CI/CD
-
-This project uses GitHub Actions for continuous integration and automated releases:
-
-- **CI**: Runs tests, linting, and builds on Node.js 18, 20, 22
-- **CD**: Automated releases to npm using [release-it](https://github.com/release-it/release-it)
-- **Publish**: Automatically publishes to npm on main branch pushes
-
-## Architecture
-
-Built with modern development practices:
-
-- **TypeScript**: Full type safety with strict configuration
-- **ESLint**: Strict linting with [eslint-config-agent](https://github.com/vercel/style-guide/tree/canary/eslint)
-- **Modular Design**: Clean separation of concerns with single-export modules
-- **Library Integration**: Uses established libraries (lodash, qs, history, validator, tiny-invariant)
-- **Driver Interface**: Fully compatible with unstorage's native Driver interface
 
 ## License
 
