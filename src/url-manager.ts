@@ -12,20 +12,22 @@ export function createUrlManager(options: QueryStringDriverOptions): UrlManager 
     if (url) {
       if (internalUrl) return internalUrl
 
-      const origin = typeof window !== 'undefined' && window.location
-        ? window.location.origin
-        : 'http://localhost'
+      // If it's a relative URL, we need a browser environment for the origin
+      if (!validator.isURL(url) && (typeof window === 'undefined' || !window.location)) {
+        throw new QueryStringDriverError('Cannot resolve relative URL in non-browser environment')
+      }
 
       try {
         if (validator.isURL(url)) {
           internalUrl = new URL(url)
         } else {
-          internalUrl = new URL(url, origin)
+          internalUrl = new URL(url, window.location.origin)
         }
         invariant(internalUrl, 'Failed to create URL')
         return internalUrl
-      } catch {
-        throw new QueryStringDriverError(`Invalid URL: ${url}`)
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+        throw new QueryStringDriverError(`Invalid URL: ${url} (${errorMessage})`, error)
       }
     }
 
