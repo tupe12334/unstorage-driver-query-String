@@ -18,12 +18,9 @@ export function createStorageHandler(
     getItem: operations.getItem,
     getItemRaw: operations.getItemRaw,
     setItem: operations.setItem,
-    setItemRaw: operations.setItemRaw,
     removeItem: operations.removeItem,
     getKeys: operations.getKeys,
     clear: operations.clear,
-    dispose: async (): Promise<void> => {
-      // No cleanup needed
-    }
+    dispose: (): Promise<void> => Promise.resolve()
   }
 }
