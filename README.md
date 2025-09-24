@@ -128,6 +128,7 @@ This project uses GitHub Actions for continuous integration and automated releas
 ## Architecture
 
 Built with modern development practices:
+
 - **TypeScript**: Full type safety with strict configuration
 - **ESLint**: Strict linting with [eslint-config-agent](https://github.com/vercel/style-guide/tree/canary/eslint)
 - **Modular Design**: Clean separation of concerns with single-export modules
