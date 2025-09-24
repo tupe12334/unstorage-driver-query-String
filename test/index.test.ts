@@ -95,9 +95,9 @@ describe('Query String Driver', () => {
 
     await storage.setItem('test', 'value')
 
-    // Check that the URL would contain the prefixed key
+    // Check that the URL would contain the prefixed key (qs creates nested structure)
     const url = new URL(mockLocation.href)
-    expect(url.searchParams.get('app_test')).toBe('value')
+    expect(url.searchParams.get('app[test]')).toBe('value')
   })
 
   it('should check if item exists', async () => {
@@ -132,7 +132,7 @@ describe('Query String Driver', () => {
   })
 
   it('should get keys with base prefix', async () => {
-    mockLocation.href = 'https://example.com/?app_foo=1&other_bar=2&app_baz=3'
+    mockLocation.href = 'https://example.com/?app[foo]=1&other_bar=2&app[baz]=3'
     const storage = createStorage({
       driver: createQueryStringDriver({ base: 'app', updateHistory: false })
     })
@@ -154,18 +154,18 @@ describe('Query String Driver', () => {
   })
 
   it('should clear only prefixed keys when using base', async () => {
-    mockLocation.href = 'https://example.com/?app_foo=1&other_bar=2&app_baz=3'
+    mockLocation.href = 'https://example.com/?app[foo]=1&other_bar=2&app[baz]=3'
     const storage = createStorage({
       driver: createQueryStringDriver({ base: 'app', updateHistory: false })
     })
 
     await storage.clear()
 
-    // Should only clear app_ prefixed keys
+    // Should only clear app prefixed keys (qs creates nested structure)
     const url = new URL(mockLocation.href)
     expect(url.searchParams.has('other_bar')).toBe(true)
-    expect(url.searchParams.has('app_foo')).toBe(false)
-    expect(url.searchParams.has('app_baz')).toBe(false)
+    expect(url.searchParams.has('app[foo]')).toBe(false)
+    expect(url.searchParams.has('app[baz]')).toBe(false)
   })
 
   it('should update history when enabled', async () => {
