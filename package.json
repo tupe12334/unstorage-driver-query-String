@@ -1,0 +1,48 @@
+{
+  "name": "unstorage-driver-query-string",
+  "version": "0.1.0",
+  "description": "Query string driver for unstorage - store state in URL parameters",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "test": "vitest --run",
+    "test:ci": "vitest --run",
+    "typecheck": "tsc --noEmit",
+    "release": "release-it"
+  },
+  "keywords": [
+    "unstorage",
+    "driver",
+    "query-string",
+    "url",
+    "state",
+    "browser"
+  ],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.12.1",
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "jsdom": "^27.0.0",
+    "release-it": "^19.0.5",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.7",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "unstorage": "^1.17.1"
+  }
+}
