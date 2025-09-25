@@ -95,6 +95,11 @@ Modern browsers with support for:
 - `URL` constructor
 - `History API` (for browser history updates)
 
+## Examples
+
+Check out the [examples directory](./examples) for comprehensive demos:
+
+- **[React Filter Demo](./examples/react-filter-demo)** - A complete React application showcasing filter management with URL persistence and sharing
 
 ## License
 

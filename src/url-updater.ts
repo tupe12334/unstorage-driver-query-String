@@ -38,14 +38,6 @@ export function createUrlUpdater(
     urlManager.updateInternalUrl(newUrl)
 
     if (!options.url && typeof window !== 'undefined') {
-      if (window.location && typeof window.location === 'object') {
-        Object.defineProperty(window.location, 'href', {
-          value: newUrl.href,
-          writable: true,
-          configurable: true
-        })
-      }
-
       if (updateHistory && typeof window !== 'undefined') {
         if (historyMethod === 'pushState') {
           window.history.pushState(null, '', newUrl.href)
