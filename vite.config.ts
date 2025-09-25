@@ -26,10 +26,6 @@ export default defineConfig(async ({ command }) => {
       rollupOptions: {
         external: ['unstorage', 'qs', 'lodash', 'validator', 'tiny-invariant', 'history']
       }
-    },
-    test: {
-      environment: 'jsdom',
-      globals: true
     }
   }
 })
