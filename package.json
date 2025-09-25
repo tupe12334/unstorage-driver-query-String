@@ -1,6 +1,7 @@
 {
   "name": "unstorage-driver-query-string",
   "version": "1.0.0",
+  "type": "module",
   "description": "Query string driver for unstorage - store state in URL parameters",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
