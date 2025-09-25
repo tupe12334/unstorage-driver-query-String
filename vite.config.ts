@@ -1,27 +1,35 @@
 import { defineConfig } from 'vite'
-import dts from 'vite-plugin-dts'
 
-export default defineConfig({
-  plugins: [
-    dts({
-      insertTypesEntry: true,
-      exclude: ['**/*.test.ts'],
-      tsconfigPath: './tsconfig.build.json'
-    })
-  ],
-  build: {
-    lib: {
-      entry: 'src/index.ts',
-      name: 'UnstorageDriverQueryString',
-      formats: ['es', 'cjs'],
-      fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`
+export default defineConfig(async ({ command }) => {
+  const plugins = []
+
+  if (command === 'build') {
+    const { default: dts } = await import('vite-plugin-dts')
+    plugins.push(
+      dts({
+        insertTypesEntry: true,
+        exclude: ['**/*.test.ts'],
+        tsconfigPath: './tsconfig.build.json'
+      })
+    )
+  }
+
+  return {
+    plugins,
+    build: {
+      lib: {
+        entry: 'src/index.ts',
+        name: 'UnstorageDriverQueryString',
+        formats: ['es', 'cjs'],
+        fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`
+      },
+      rollupOptions: {
+        external: ['unstorage', 'qs', 'lodash', 'validator', 'tiny-invariant', 'history']
+      }
     },
-    rollupOptions: {
-      external: ['unstorage', 'qs', 'lodash', 'validator', 'tiny-invariant', 'history']
+    test: {
+      environment: 'jsdom',
+      globals: true
     }
-  },
-  test: {
-    environment: 'jsdom',
-    globals: true
   }
 })
