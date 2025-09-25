@@ -32,6 +32,7 @@ export function createUrlManager(options: QueryStringDriverOptions): UrlManager 
     }
 
     if (typeof window !== 'undefined') {
+      if (internalUrl) return internalUrl
       return new URL(window.location.href)
     }
 
@@ -40,6 +41,10 @@ export function createUrlManager(options: QueryStringDriverOptions): UrlManager 
 
   const updateInternalUrl = (newUrl: URL): void => {
     if (url) {
+      internalUrl = newUrl
+    } else if (typeof window !== 'undefined') {
+      // In browser environments without custom URL, we need to track the state
+      // since window.location.href is read-only and cannot be reliably updated
       internalUrl = newUrl
     }
   }

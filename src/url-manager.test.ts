@@ -165,9 +165,9 @@ describe("URL Manager", () => {
       const newUrl = new URL("https://example.com/updated");
       urlManager.updateInternalUrl(newUrl);
 
-      // Should still return window.location.href since no custom URL was provided
+      // Should now return the updated URL since we track internal state for browser environments
       const result = urlManager.getUrl();
-      expect(result.href).toBe("https://current-page.com/path");
+      expect(result.href).toBe("https://example.com/updated");
     });
   });
 });
