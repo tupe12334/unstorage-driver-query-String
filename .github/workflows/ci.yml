@@ -59,10 +59,36 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           persist-credentials: true
 
+      - name: Check if version changed
+        id: version-check
+        run: |
+          # Get the current version from package.json
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "Current version: $CURRENT_VERSION"
+
+          # Get the previous commit's version
+          git checkout HEAD~1 -- package.json 2>/dev/null || echo "No previous commit or package.json"
+          PREVIOUS_VERSION=$(node -p "require('./package.json').version" 2>/dev/null || echo "0.0.0")
+          echo "Previous version: $PREVIOUS_VERSION"
+
+          # Restore current package.json
+          git checkout HEAD -- package.json
+
+          # Compare versions
+          if [ "$CURRENT_VERSION" != "$PREVIOUS_VERSION" ]; then
+            echo "Version changed from $PREVIOUS_VERSION to $CURRENT_VERSION"
+            echo "version-changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "Version unchanged: $CURRENT_VERSION"
+            echo "version-changed=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Install pnpm
+        if: steps.version-check.outputs.version-changed == 'true'
         uses: pnpm/action-setup@v4
 
       - name: Setup Node.js
+        if: steps.version-check.outputs.version-changed == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -70,18 +96,28 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
+        if: steps.version-check.outputs.version-changed == 'true'
         run: pnpm install --frozen-lockfile
 
       - name: Build
+        if: steps.version-check.outputs.version-changed == 'true'
         run: pnpm run build
 
       - name: Configure Git
+        if: steps.version-check.outputs.version-changed == 'true'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Release
+        if: steps.version-check.outputs.version-changed == 'true'
         run: pnpm run release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Skip release (no version change)
+        if: steps.version-check.outputs.version-changed == 'false'
+        run: |
+          echo "🚫 Skipping release - no version change detected"
+          echo "The package.json version has not changed since the last commit."
