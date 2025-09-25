@@ -23,9 +23,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "release": "release-it",
-    "release:ci": "release-it --no-git.push --no-git.tag --no-github.release",
-    "release:local": "release-it --git.push --git.tag --github.release"
+    "release": "release-it"
   },
   "keywords": [
     "unstorage",

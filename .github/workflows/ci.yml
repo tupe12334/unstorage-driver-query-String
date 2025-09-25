@@ -45,6 +45,11 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+      pull-requests: read
+      actions: read
+      checks: read
 
     steps:
       - name: Checkout
@@ -52,6 +57,7 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4

@@ -1,11 +1,13 @@
 {
   "git": {
     "commitMessage": "chore: release v${version}",
-    "push": false,
-    "tag": false
+    "push": true,
+    "tag": true
   },
   "github": {
-    "release": false
+    "release": true,
+    "releaseName": "Release ${version}",
+    "tokenRef": "GITHUB_TOKEN"
   },
   "npm": {
     "publish": true
