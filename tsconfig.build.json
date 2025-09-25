@@ -6,5 +6,5 @@
     "declarationMap": true,
     "outDir": "./dist"
   },
-  "exclude": ["**/*.test.ts", "**/*.spec.ts", "node_modules", "dist"]
+  "exclude": ["**/*.test.ts", "**/*.spec.ts", "**/*.mjs", "node_modules", "dist"]
 }
