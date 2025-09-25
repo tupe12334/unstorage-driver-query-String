@@ -124,7 +124,7 @@ describe("Storage Operations", () => {
         toRemove: "value"
       });
 
-      await operations.setItem("toRemove", null, {});
+      await operations.setItem("toRemove", null!, {});
 
       expect(mockUpdateUrl).toHaveBeenCalledWith({ foo: "bar" });
     });

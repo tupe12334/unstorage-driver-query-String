@@ -24,7 +24,7 @@ describe("URL Manager", () => {
     originalWindow = global.window;
     vi.mocked(invariant).mockImplementation((condition, message) => {
       if (!condition) {
-        throw new QueryStringDriverError(message || "Invariant failed");
+        throw new QueryStringDriverError(typeof message === 'function' ? message() : message || "Invariant failed");
       }
     });
   });
@@ -161,7 +161,6 @@ describe("URL Manager", () => {
       });
 
       const urlManager = createUrlManager({});
-      const originalUrl = urlManager.getUrl();
 
       const newUrl = new URL("https://example.com/updated");
       urlManager.updateInternalUrl(newUrl);

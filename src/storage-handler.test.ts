@@ -19,7 +19,15 @@ describe("Storage Handler", () => {
   let mockDataManager: DataManager;
   let mockUrlManager: UrlManager;
   let mockUpdateUrl: vi.Mock;
-  let mockOperations: ReturnType<typeof createStorageOperations>;
+  let mockOperations: {
+    hasItem: vi.Mock;
+    getItem: vi.Mock;
+    getItemRaw: vi.Mock;
+    setItem: vi.Mock;
+    removeItem: vi.Mock;
+    getKeys: vi.Mock;
+    clear: vi.Mock;
+  };
 
   beforeEach(() => {
     vi.clearAllMocks();
