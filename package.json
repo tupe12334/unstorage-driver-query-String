@@ -48,7 +48,6 @@
     "eslint-plugin-single-export": "^1.1.2",
     "globals": "^16.4.0",
     "happy-dom": "^18.0.1",
-    "jsdom": "^27.0.0",
     "release-it": "^19.0.5",
     "typescript": "^5.9.2",
     "vite": "^7.1.7",
