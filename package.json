@@ -1,7 +1,6 @@
 {
   "name": "unstorage-driver-query-string",
   "version": "1.0.0",
-  "type": "module",
   "description": "Query string driver for unstorage - store state in URL parameters",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -19,8 +18,8 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite build --watch",
-    "test": "vitest --run --config vitest.config.ts",
-    "test:ci": "vitest --run --config vitest.config.ts",
+    "test": "vitest --run --config vitest.config.mjs",
+    "test:ci": "vitest --run --config vitest.config.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
