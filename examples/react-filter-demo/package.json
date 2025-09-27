@@ -1,5 +1,6 @@
 {
   "name": "react-filter-demo",
+  "description": "Advanced React filter demo using unstorage-driver-query-string",
   "private": true,
   "version": "0.0.0",
   "type": "module",

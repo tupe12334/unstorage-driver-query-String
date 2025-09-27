@@ -99,7 +99,8 @@ Modern browsers with support for:
 
 Check out the [examples directory](./examples) for comprehensive demos:
 
-- **[React Filter Demo](./examples/react-filter-demo)** - A complete React application showcasing filter management with URL persistence and sharing
+- **[React Example](./examples/react)** - Basic React demonstration showing all library features with simple form inputs
+- **[React Filter Demo](./examples/react-filter-demo)** - Advanced React application showcasing filter management with URL persistence and sharing
 
 ## License
 

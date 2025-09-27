@@ -2,6 +2,33 @@
 
 This directory contains examples demonstrating how to use `unstorage-driver-query-string` in different scenarios.
 
+## React Example
+
+A basic React application demonstrating all core features of the query string driver with simple form inputs.
+
+**Location**: `react/`
+
+**Features**:
+- Simple form inputs (text, number, boolean, select)
+- Nested object storage and retrieval
+- Real-time URL updates
+- State persistence across page reloads
+- Browser history integration
+- TypeScript support
+
+**Demo**: Navigate to the example and try:
+1. Fill in form values and watch the URL update automatically
+2. Copy the URL and open in a new tab - state is restored
+3. Use browser back/forward buttons to see history integration
+4. Test with different data types and nested objects
+
+**Key Concepts Demonstrated**:
+- Basic driver setup and configuration
+- Storing simple data types (strings, numbers, booleans)
+- Working with nested objects
+- URL structure and parameter prefixing
+- State persistence and restoration
+
 ## React Filter Demo
 
 A comprehensive React application showcasing how to use the query string driver for storing and sharing filter configurations.
@@ -35,7 +62,9 @@ Each example can be run independently:
 
 ```bash
 # Navigate to an example directory
-cd react-filter-demo
+cd react                    # Basic React example
+# or
+cd react-filter-demo       # Advanced filter demo
 
 # Install dependencies
 npm install
