@@ -37,13 +37,11 @@ export function createUrlUpdater(
 
     urlManager.updateInternalUrl(newUrl)
 
-    if (!options.url && typeof window !== 'undefined') {
-      if (updateHistory && typeof window !== 'undefined') {
-        if (historyMethod === 'pushState') {
-          window.history.pushState(null, '', newUrl.href)
-        } else {
-          window.history.replaceState(null, '', newUrl.href)
-        }
+    if (!options.url && typeof window !== 'undefined' && updateHistory) {
+      if (historyMethod === 'pushState') {
+        window.history.pushState(null, '', newUrl.href)
+      } else {
+        window.history.replaceState(null, '', newUrl.href)
       }
     }
   }
